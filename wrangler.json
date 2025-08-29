@@ -1,0 +1,16 @@
+{
+  "compatibility_date": "2025-04-01",
+  "main": "src/index.ts",
+  "name": "mukansei",
+  "upload_source_maps": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "da26ddda-468c-4985-ab09-afa059b87a32",
+      "database_name": "mukansei"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
