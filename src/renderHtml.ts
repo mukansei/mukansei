@@ -5,7 +5,7 @@ export function renderHtml(content: string) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>mukansei 無慣性</title>
+        <title>書庫 | Modern Library</title>
         <style>
             * {
                 margin: 0;
@@ -358,13 +358,271 @@ export function renderHtml(content: string) {
                 font-size: 0.8rem;
                 margin-left: 10px;
             }
+            
+            /* 모바일 메뉴 버튼 */
+            .mobile-menu-btn {
+                display: none;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #000000;
+                color: #ffffff;
+                border: none;
+                width: 50px;
+                height: 50px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            
+            .mobile-menu-btn:hover {
+                background: #333333;
+            }
+            
+            .menu-icon {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .menu-icon span {
+                display: block;
+                width: 25px;
+                height: 1px;
+                background: #ffffff;
+                margin: 3px 0;
+                transition: all 0.3s;
+            }
+            
+            .mobile-menu-btn.active .menu-icon span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .mobile-menu-btn.active .menu-icon span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn.active .menu-icon span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            /* 태블릿 사이즈 (768px - 1024px) */
+            @media screen and (max-width: 1024px) {
+                .sidebar {
+                    width: 260px;
+                    padding: 40px 30px;
+                }
+                
+                .main-content {
+                    padding: 40px 40px;
+                }
+                
+                .page-header h1 {
+                    font-size: 3rem;
+                }
+                
+                .book-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                    gap: 40px 30px;
+                }
+            }
+            
+            /* 모바일 사이즈 (768px 이하) */
+            @media screen and (max-width: 768px) {
+                .mobile-menu-btn {
+                    display: block;
+                }
+                
+                .layout {
+                    flex-direction: column;
+                }
+                
+                .sidebar {
+                    position: fixed;
+                    top: 0;
+                    left: -100%;
+                    width: 280px;
+                    height: 100vh;
+                    z-index: 1000;
+                    transition: left 0.3s ease;
+                    padding: 80px 30px 30px;
+                }
+                
+                .sidebar.active {
+                    left: 0;
+                }
+                
+                .sidebar-title {
+                    font-size: 2rem;
+                }
+                
+                .main-content {
+                    padding: 80px 20px 40px;
+                    width: 100%;
+                }
+                
+                .page-header {
+                    margin-bottom: 40px;
+                    padding-bottom: 20px;
+                }
+                
+                .page-header h1 {
+                    font-size: 2.5rem;
+                    margin-bottom: 15px;
+                }
+                
+                .page-header .subtitle {
+                    font-size: 1rem;
+                }
+                
+                .breadcrumbs {
+                    margin-bottom: 30px;
+                    font-size: 0.75rem;
+                }
+                
+                .info-banner {
+                    padding: 25px;
+                    margin-bottom: 40px;
+                }
+                
+                .info-banner h2 {
+                    font-size: 0.9rem;
+                }
+                
+                .info-banner p, .info-banner li {
+                    font-size: 0.85rem;
+                }
+                
+                .controls {
+                    margin-bottom: 40px;
+                }
+                
+                .sort-select {
+                    width: 100%;
+                    padding: 12px 20px;
+                }
+                
+                .book-grid {
+                    grid-template-columns: 1fr;
+                    gap: 30px;
+                }
+                
+                .book-card-image {
+                    height: 300px;
+                }
+                
+                .book-card-content {
+                    padding: 25px;
+                }
+                
+                .book-card-content h3 {
+                    font-size: 1.2rem;
+                }
+                
+                .book-card-content .description {
+                    font-size: 0.9rem;
+                }
+                
+                .btn-primary {
+                    padding: 12px;
+                    font-size: 0.85rem;
+                }
+            }
+            
+            /* 작은 모바일 (480px 이하) */
+            @media screen and (max-width: 480px) {
+                .mobile-menu-btn {
+                    left: 15px;  /* main-content padding과 동일하게 맞춤 */
+                }
+                
+                .sidebar {
+                    width: 100%;
+                }
+                
+                .main-content {
+                    padding: 70px 15px 30px;
+                }
+                
+                .page-header h1 {
+                    font-size: 2rem;
+                }
+                
+                .page-header .subtitle {
+                    font-size: 0.9rem;
+                }
+                
+                .info-banner {
+                    padding: 20px;
+                }
+                
+                .book-card-image {
+                    height: 250px;
+                }
+                
+                .book-placeholder {
+                    font-size: 1rem;
+                    padding: 20px;
+                }
+                
+                .book-number {
+                    font-size: 2rem;
+                }
+                
+                .book-card-content {
+                    padding: 20px;
+                }
+                
+                .book-card-content h3 {
+                    font-size: 1.1rem;
+                }
+                
+                .book-card-content .author {
+                    font-size: 0.85rem;
+                }
+                
+                .book-card-content .description {
+                    font-size: 0.85rem;
+                    -webkit-line-clamp: 2;
+                }
+            }
+            
+            /* 오버레이 */
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+            
+            .overlay.active {
+                display: block;
+            }
         </style>
     </head>
     <body>
+        <!-- 모바일 메뉴 버튼 -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        
+        <!-- 오버레이 -->
+        <div class="overlay" id="overlay"></div>
+        
         <div class="layout">
-            <aside class="sidebar">
+            <aside class="sidebar" id="sidebar">
                 <div class="sidebar-title">無慣性</div>
-                <div class="sidebar-subtitle">mukansei</div>
+                <div class="sidebar-subtitle">MUKANSEI</div>
                 
                 <nav class="sidebar-nav">
                     <a class="sidebar-link-active" href="#">
@@ -374,15 +632,15 @@ export function renderHtml(content: string) {
                     <div class="sidebar-section">
                         <div class="sidebar-heading">Categories</div>
                         <a class="sidebar-link" href="#">
-                            <span>Hokkaido</span>
+                            <span>Historical Fiction</span>
                             <span class="book-count">02</span>
                         </a>
                         <a class="sidebar-link" href="#">
-                            <span>Yamanashi</span>
+                            <span>Literary Fiction</span>
                             <span class="book-count">05</span>
                         </a>
                         <a class="sidebar-link" href="#">
-                            <span>Nagano</span>
+                            <span>Science Fiction</span>
                             <span class="book-count">02</span>
                         </a>
                     </div>
@@ -396,19 +654,21 @@ export function renderHtml(content: string) {
             
             <main class="main-content">
                 <nav class="breadcrumbs">
-                    HOME<span class="breadcrumb-separator">/</span>MUKANSEI<span class="breadcrumb-separator">/</span>ALL WINES
+                    HOME<span class="breadcrumb-separator">/</span>LIBRARY<span class="breadcrumb-separator">/</span>ALL BOOKS
                 </nav>
                 
                 <div class="page-header">
-                    <h1>My Wines</h1>
-                    <p class="subtitle">Discover the beauty of wine through minimalist curation</p>
+                    <h1>My Library</h1>
+                    <p class="subtitle">Discover the beauty of literature through minimalist curation</p>
                 </div>
                 
                 <div class="info-banner">
-                    <h2>Our Vision</h2>
-                    <p>私たちの志向点</p>
+                    <h2>Demo Mode Active</h2>
+                    <p>Currently viewing with mock data. To connect a real database:</p>
                     <ol>
-                        <li><a href="#" target="_blank">美しい心で美しい世界を</a></li>
+                        <li><a href="#" target="_blank">Configure PostgreSQL database</a></li>
+                        <li>Set up Hyperdrive binding in wrangler.jsonc</li>
+                        <li><a href="#" target="_blank">View complete documentation</a></li>
                     </ol>
                 </div>
                 
@@ -542,6 +802,51 @@ export function renderHtml(content: string) {
                 </div>
             </main>
         </div>
+        
+        <script>
+            // 모바일 메뉴 토글
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+            
+            // 오버레이 클릭 시 메뉴 닫기
+            overlay.addEventListener('click', function() {
+                mobileMenuBtn.classList.remove('active');
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // 사이드바 링크 클릭 시 모바일에서 메뉴 닫기
+            const sidebarLinks = document.querySelectorAll('.sidebar-link, .sidebar-link-active');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        mobileMenuBtn.classList.remove('active');
+                        sidebar.classList.remove('active');
+                        overlay.classList.remove('active');
+                    }
+                });
+            });
+            
+            // 리사이즈 시 메뉴 상태 리셋
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    if (window.innerWidth > 768) {
+                        mobileMenuBtn.classList.remove('active');
+                        sidebar.classList.remove('active');
+                        overlay.classList.remove('active');
+                    }
+                }, 250);
+            });
+        </script>
     </body>
     </html>
 `;
